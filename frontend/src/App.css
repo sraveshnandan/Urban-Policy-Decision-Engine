@@ -1,0 +1,494 @@
+/* ============================================================================
+   URBAN POLICY AI ENGINE - GLASSMORPHISM DESIGN
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ============================================================================
+   CSS VARIABLES
+   ============================================================================ */
+
+:root {
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.18);
+  --neon: #38bdf8;
+  --cyan: #22d3ee;
+  --purple: #a855f7;
+  --danger: #ef4444;
+  --warn: #facc15;
+  --safe: #22c55e;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-accent: #7dd3fc;
+}
+
+/* ============================================================================
+   GLOBAL STYLES
+   ============================================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 15%, #ec4899 0%, transparent 35%),
+    radial-gradient(circle at 85% 85%, #a855f7 0%, transparent 40%),
+    linear-gradient(120deg, #020617, #020617);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Smooth fade animation for data updates */
+@keyframes fadeIn {
+  from { opacity: 0.7; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(56, 189, 248, 0.5); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================================
+   APP LAYOUT
+   ============================================================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.app-header {
+  text-align: center;
+  padding: 2rem 2rem 1.5rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--neon), var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+
+.app-header p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.theme-toggle {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: linear-gradient(135deg, var(--neon), var(--cyan));
+  color: #020617;
+  transform: scale(1.1);
+}
+
+/* ============================================================================
+   SECTOR SELECTOR PANEL
+   ============================================================================ */
+
+.sector-selector-panel {
+  padding: 0 2rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sector-toggle {
+  padding: 0.8rem 1.5rem;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.sector-toggle:hover {
+  background: linear-gradient(135deg, var(--neon), var(--cyan));
+  color: #020617;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+}
+
+.toggle-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.toggle-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.sector-list-top {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  animation: slideDown 0.3s ease;
+}
+
+.sector-list-top::-webkit-scrollbar {
+  height: 6px;
+}
+
+.sector-list-top::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.sector-list-top::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* ============================================================================
+   MAIN CONTAINER - TWO COLUMN LAYOUT
+   ============================================================================ */
+
+.app-container {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  padding: 0 2rem 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  align-items: start;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.side-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 1rem;
+}
+
+/* ============================================================================
+   GLASS CARD BASE STYLE
+   ============================================================================ */
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border-radius: 26px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card h2 {
+  color: var(--text-accent);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ============================================================================
+   ERROR BANNER
+   ============================================================================ */
+
+.error-banner {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
+  backdrop-filter: blur(20px);
+  color: var(--danger);
+  padding: 1rem 2rem;
+  text-align: center;
+  font-weight: 600;
+  margin: 0 2rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================================
+   LOADING STATE
+   ============================================================================ */
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border-radius: 26px;
+  border: 1px solid var(--border);
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.app-footer p {
+  margin: 0.3rem 0;
+}
+
+/* ============================================================================
+   METRICS BAR
+   ============================================================================ */
+
+.metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.metric-item {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.metric-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.metric-item .label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+}
+
+.metric-item .value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #67e8f9;
+  transition: all 0.3s ease;
+}
+
+.metric-item .value.danger { color: var(--danger); }
+.metric-item .value.warn { color: var(--warn); }
+.metric-item .value.safe { color: var(--safe); }
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--neon), var(--cyan));
+  color: #020617;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+}
+
+.button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.button-secondary:hover {
+  background: linear-gradient(135deg, var(--neon), var(--cyan));
+  color: #020617;
+}
+
+/* ============================================================================
+   BADGES
+   ============================================================================ */
+
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-critical, .badge-hazardous {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-high, .badge-very-unhealthy {
+  background: rgba(249, 115, 22, 0.2);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.badge-medium, .badge-unhealthy {
+  background: rgba(250, 204, 21, 0.2);
+  color: var(--warn);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.badge-low, .badge-moderate {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--safe);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .side-content {
+    position: static;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .app-container {
+    padding: 0 1rem 1rem;
+    gap: 1rem;
+  }
+  
+  .sector-selector-panel {
+    padding: 0 1rem 1rem;
+  }
+  
+  .metrics-bar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .glass-card {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .app-header h1 {
+    font-size: 1.4rem;
+  }
+}

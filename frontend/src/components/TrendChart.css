@@ -1,0 +1,171 @@
+/* ============================================================================
+   TREND CHART - GLASSMORPHISM DESIGN
+   ============================================================================ */
+
+.trend-chart {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 26px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.trend-chart.light {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.7; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================================
+   CHART HEADER
+   ============================================================================ */
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.trend-chart.light .chart-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #7dd3fc;
+  font-weight: 700;
+}
+
+.trend-chart.light .chart-header h3 {
+  color: #0369a1;
+}
+
+/* ============================================================================
+   TREND SUMMARY
+   ============================================================================ */
+
+.trend-summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.trend-value {
+  color: #67e8f9;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.trend-chart.light .trend-value {
+  color: #0284c7;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.trend-indicator {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.trend-chart.light .trend-indicator {
+  background: rgba(56, 189, 248, 0.15);
+  color: #0284c7;
+}
+
+/* ============================================================================
+   CHART CONTAINER
+   ============================================================================ */
+
+.recharts-wrapper {
+  margin: 1rem 0;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.1) !important;
+}
+
+.trend-chart.light .recharts-cartesian-grid-horizontal line,
+.trend-chart.light .recharts-cartesian-grid-vertical line {
+  stroke: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ============================================================================
+   TREND INFO
+   ============================================================================ */
+
+.trend-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-left: 3px solid #38bdf8;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trend-chart.light .trend-info {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(30, 41, 59, 0.7);
+}
+
+.trend-info p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .trend-chart {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+  
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .chart-header h3 {
+    font-size: 1rem;
+  }
+  
+  .trend-summary {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .trend-value {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

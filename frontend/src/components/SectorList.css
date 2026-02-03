@@ -1,0 +1,203 @@
+/* ============================================================================
+   SECTOR LIST - GLASSMORPHISM DESIGN
+   ============================================================================ */
+
+.sector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sector-list-top .sector-list {
+  flex-direction: row;
+  gap: 0.8rem;
+}
+
+.no-data {
+  color: var(--text-secondary, #9ca3af);
+  text-align: center;
+  padding: 1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* ============================================================================
+   SECTOR CARD
+   ============================================================================ */
+
+.sector-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  min-width: 160px;
+  color: #e5e7eb;
+}
+
+.sector-list-top .sector-list .sector-card {
+  min-width: 180px;
+}
+
+.sector-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2);
+}
+
+.sector-card.selected {
+  border-color: #38bdf8;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(34, 211, 238, 0.15));
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Severity-based left border accent */
+.sector-card.moderate {
+  border-left: 4px solid #22c55e;
+}
+
+.sector-card.unhealthy-sensitive {
+  border-left: 4px solid #facc15;
+}
+
+.sector-card.unhealthy {
+  border-left: 4px solid #f97316;
+}
+
+.sector-card.very-unhealthy {
+  border-left: 4px solid #ef4444;
+}
+
+.sector-card.hazardous {
+  border-left: 4px solid #dc2626;
+}
+
+/* ============================================================================
+   CARD HEADER
+   ============================================================================ */
+
+.sector-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sector-card-header h3 {
+  font-size: 1rem;
+  color: #e5e7eb;
+  margin: 0;
+  flex: 1;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.severity-emoji {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+/* ============================================================================
+   SECTOR METRICS
+   ============================================================================ */
+
+.sector-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.sector-metric .label {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-size: 0.7rem;
+}
+
+.sector-metric .value {
+  color: #67e8f9;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.sector-metric .value.traffic {
+  color: #a78bfa;
+}
+
+.sector-metric .unit {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+}
+
+/* ============================================================================
+   SEVERITY BADGE
+   ============================================================================ */
+
+.sector-severity {
+  margin-top: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sector-card.moderate .sector-severity {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.sector-card.unhealthy-sensitive .sector-severity {
+  background: rgba(250, 204, 21, 0.2);
+  color: #facc15;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.sector-card.unhealthy .sector-severity {
+  background: rgba(249, 115, 22, 0.2);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.sector-card.very-unhealthy .sector-severity {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.sector-card.hazardous .sector-severity {
+  background: rgba(220, 38, 38, 0.2);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .sector-card {
+    min-width: 150px;
+    padding: 0.8rem;
+  }
+  
+  .sector-card-header h3 {
+    font-size: 0.9rem;
+  }
+}
