@@ -22,9 +22,6 @@ function App() {
   // API base URL
   const API_BASE = 'http://localhost:8000';
 
-  /**
-   * Fetch all sectors with current readings
-   */
   const fetchSectors = async () => {
     try {
       const response = await axios.get(`${API_BASE}/sectors`);
@@ -36,9 +33,6 @@ function App() {
     }
   };
 
-  /**
-   * Fetch detailed status for selected sector
-   */
   const fetchSectorStatus = async (sectorId, showLoading = true) => {
     try {
       if (showLoading) setLoading(true);
@@ -68,9 +62,6 @@ function App() {
     }
   };
 
-  /**
-   * Fetch policy recommendation for selected sector
-   */
   const fetchPolicy = async (sectorId) => {
     try {
       const response = await axios.get(`${API_BASE}/sector/${sectorId}/policy`);
@@ -82,9 +73,6 @@ function App() {
     }
   };
 
-  /**
-   * Simulate policy impact
-   */
   const handleSimulatePolicy = async (policyName) => {
     // Save scroll position before update
     const savedScrollY = window.scrollY;
@@ -110,24 +98,15 @@ function App() {
     }
   };
 
-  /**
-   * Handle sector selection
-   */
   const handleSectorSelect = (sectorId) => {
     setSelectedSectorId(sectorId);
     setSimulation(null); // Clear simulation when sector changes
   };
 
-  /**
-   * Fetch data on component mount
-   */
   useEffect(() => {
     fetchSectors();
   }, []);
 
-  /**
-   * Fetch sector details and policy when selected sector changes
-   */
   useEffect(() => {
     if (selectedSectorId) {
       fetchSectorStatus(selectedSectorId);
@@ -135,9 +114,6 @@ function App() {
     }
   }, [selectedSectorId]);
 
-  /**
-   * Poll backend every 10 seconds for fresh data
-   */
   useEffect(() => {
     const interval = setInterval(async () => {
       // Save scroll position before any fetch
