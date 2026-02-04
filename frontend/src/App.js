@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import SectorList from './components/SectorList';
@@ -20,7 +20,7 @@ function App() {
   const [sectorsExpanded, setSectorsExpanded] = useState(false);
 
   // API base URL
-  const API_BASE = 'http://localhost:8000';
+  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
   const fetchSectors = async () => {
     try {
