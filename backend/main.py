@@ -14,6 +14,10 @@ import httpx
 import asyncio
 from datetime import datetime
 
+import os 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = FastAPI(
     title="Urban Policy Decision Engine",
     description="Air Quality Policy Recommendation System - Real-time Data"
@@ -83,8 +87,8 @@ SECTORS_CONFIG = {
 SECTORS_DATA = {}
 
 # WAQI API (World Air Quality Index) - Using user's API token
-WAQI_TOKEN = "3cf43cf473e9927e0cfa20b60760afb46e4e2e7f"
-WAQI_BASE = "https://api.waqi.info"
+WAQI_TOKEN = os.getenv("WAQI_API_KEY", "demo")
+WAQI_BASE = os.getenv("WAQI_BASE", "https://api.waqi.info")
 
 # Station names for Delhi NCR (from WAQI network)
 # These are actual monitoring stations in Delhi NCR
